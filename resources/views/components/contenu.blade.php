@@ -22,7 +22,7 @@
     <li>
       <img src="{{ asset('img/hosp.jpg') }}">
       <div class="caption right-align">
-        <h3 class=" grey-text text-darken-3">Acceder Tout Aussi A Votre Dossier M&eacute;dical</h3>
+        <h3 class="light grey-text text-lighten-4">Acceder Tout Aussi A Votre Dossier M&eacute;dical</h3>
         <h5 class="grey-text text-darken-2">
             A Partir De Votre Espace Utilisateur
         </h5>
@@ -34,7 +34,7 @@
     <li>
       <img src="{{ asset('img/kos.png') }}">
       <div class="caption left-align">
-        <h3>Faites Votre Suivi M&eacute;dical </h3>
+        <h3 >Faites Votre Suivi M&eacute;dical </h3>
         <h5 class="light grey-text text-lighten-3">En Ligne</h5>
         <div class="row">
           <a href="" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Accéder Votre Espace</a>

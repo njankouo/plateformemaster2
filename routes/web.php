@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\DossierController;
+use App\Http\Controllers\ExamenController;
+use App\Http\Controllers\RdvController;
+use App\Http\Controllers\SuiviController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/dossier',[DossierController::class,'index'])->name('dossier');
+Route::get('planing/{id}',[RdvController::class,'index'])->name('rdv');
+Route::get('examen',[ExamenController::class,'index'])->name('examen');
+Route::get('suivi',[SuiviController::class,'index'])->name('suivi');
+Route::get('/dossier/patient/{id}',[DossierController::class,'pdf'])->name('dossier.patient');
+Route::get('/login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);

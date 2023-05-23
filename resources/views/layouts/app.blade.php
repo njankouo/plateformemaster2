@@ -23,59 +23,75 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ asset('css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 </head>
 <body>
     <div class="navbar-fixed ">
-        <nav class="blue darken-4" role="navigation">
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!">Votre Profil</a></li>
+        <li>
+          <a href="">Modifier Mot De Passe</a>
+      </li>
+        <li class="divider"></li>
+        <li>
+
+          <a href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+              Deconnexion
+          </a>
+
+
+  </li>
+
+      </ul>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
+
+        <nav class="transparent text-black" role="navigation" style="font-weight:bold">
           <div class="nav-wrapper container">
-            <a href="#!" class="brand-logo">
+            <a href="#" class="brand-logo">
 
             </a>
-            <a id="logo-container" href="#" class="brand-logo white-text sidenav-trigger" data-target="mobile-demo"> </a>
+            <a  href="#" class="white-text sidenav-trigger" data-target="mobile-nav">
+            <i class="material-icons black">menu</i>
+            </a>
+
             <ul class="right hide-on-med-and-down">
-              <li><a href="/" class="white-text">Accueil</a></li>
+
               @if (auth()->check())
               @else
-              <li><a href="{{ route('register') }}" class="white-text">Inscription</a></li>
-              <li><a href="{{ route('login') }}" class="white-text">Connexion</a></li>
+              <li><a href="{{ route('register') }}" >Inscription</a></li>
+              <li><a href="{{ route('login') }}" >Connexion</a></li>
               @endif
 
 
-              <li><a href="" class="white-text">Suivi M&eacute;dical </a></li>
+              <li><a href="{{route('suivi')}}" >Suivi M&eacute;dical </a></li>
 
               @if (auth()->check())
-              <li><a href="{{ route('home') }}" class="white-text">Creer Un Rdv </a></li>
-              <li><a href="{{ route('dossier') }}" class="white-text">Dosier M&eacute;dical</a></li>
+
+              <li><a href="{{ route('home') }}" >Rdv M&eacute;dical</a></li>
+              <li><a href="{{ route('dossier') }}" >Dosier M&eacute;dical</a></li>
+              <li><a href="{{ route('examen') }}" >Examens M&eacute;dicaux</a></li>
               <li class="purple">
-                <a href="" class="white-text">
+                <a href="" class="white-text dropdown-trigger" data-target="dropdown1">
 
-               Bienvenue&nbsp;{{ Auth()->user()->name }}
-
+              {{ Auth()->user()->email }}
+              <i class="material-icons right">arrow_drop_down</i>
                 </a>
               </li>
-              <li class="nav-item dropdown white" style="list-style-type: none;">
 
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                    {{ __('Deconnexion') }}
-                </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-
-        </li>
         @endif
             </ul>
 
               </div>
 
         </nav>
-        <ul class="sidenav" id="mobile-demo">
+        <ul class="sidenav" id="mobile-nav">
             <li><a href="sass.html">Accueil</a></li>
             <li><a href="badges.html">Inscription</a></li>
             <li><a href="collapsible.html">Connexion</a></li>
@@ -124,6 +140,56 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer class="page-footer teal">
+            <div class="container">
+              <div class="row">
+                <div class="col l6 s12">
+                  <h5 class="white-text">Centre m&eacute;co-chirurgical d'urologie </h5>
+                  <p class="grey-text text-lighten-4">
+                    cette plateforme a pour objectif de permettre aux patients de passer des rendez-vous m&eacute;caux sans avoir besoin de se deplacer
+                  </p>
+
+
+                </div>
+                <div class="col l3 s12">
+                  <h5 class="white-text">Settings</h5>
+                  <ul>
+                    <li><a class="white-text" href="#!">Link 1</a></li>
+                    <li><a class="white-text" href="#!">Link 2</a></li>
+                    <li><a class="white-text" href="#!">Link 3</a></li>
+                    <li><a class="white-text" href="#!">Link 4</a></li>
+                  </ul>
+                </div>
+                <div class="col l3 s12">
+                  <h5 class="white-text">Connect</h5>
+                  <ul>
+                    <li><a class="white-text" href="#!">Link 1</a></li>
+                    <li><a class="white-text" href="#!">Link 2</a></li>
+                    <li><a class="white-text" href="#!">Link 3</a></li>
+                    <li><a class="white-text" href="#!">Link 4</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="footer-copyright">
+              <div class="container">
+              <a class="brown-text text-lighten-3" href="http://cmcu.com">Lien Cmcu</a>
+              </div>
+            </div>
+          </footer>
+
     </div>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+            $('.dropdown-trigger').dropdown();
+        });
+        $(document).ready(function(){
+         $(".dropdown-button").dropdown();
+        });
+
+    </script>
 </body>
 </html>

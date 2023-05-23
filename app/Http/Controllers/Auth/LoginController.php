@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Support\Facades\Auth;
+use Socialite;
 class LoginController extends Controller
 {
     /*
@@ -37,4 +39,29 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    protected function _registerOrLoginUser($data){
+        $user = User::where('email',$data->email)->first();
+          if(!$user){
+             $user = new User();
+             $user->name = $data->name;
+             $user->email = $data->email;
+           //  $user->provider_id = $data->id;
+           //  $user->avatar = $data->avatar;
+             $user->save();
+          }
+        Auth::login($user);
+        }
+
+        public function redirectToGoogle(){
+            return Socialite::driver('google')->stateless()->redirect();
+            }
+
+            //Google callback
+            public function handleGoogleCallback(){
+
+            $user = Socialite::driver('google')->stateless()->user();
+
+              $this->_registerorLoginUser($user);
+              return redirect()->route('home');
+            }
 }
