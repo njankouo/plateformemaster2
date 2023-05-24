@@ -42,7 +42,7 @@ class UserNotification extends Notification
     {
         return (new MailMessage)
                     ->line('Confirmer Quil s\'agit de vous')
-                    ->action('Notification Action', url('/'))
+                    ->action('Notification Action', url('/home'))
                     ->line('Merci D\'utiliser cette plateforme pour votre suivi medical!');
     }
 
