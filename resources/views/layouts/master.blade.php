@@ -28,6 +28,7 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 </head>
+
 <body>
 
   <!-- NAV BAR -->
