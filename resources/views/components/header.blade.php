@@ -4,13 +4,13 @@
       <a href="#!" class="brand-logo"></a>
       <a id="logo-container" href="#" class="brand-logo white-text sidenav-trigger" data-target="mobile-demo"> </a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#scrollspy1" >Accueil</a></li>
+        {{-- <li><a href="#scrollspy1" >Accueil</a></li> --}}
         <li><a href="{{ route('register') }}" >Inscription</a></li>
         <li><a href="{{ route('login') }}" >Connexion</a></li>
 
-        <li><a href="" >Suivi M&eacute;dical</a></li>
+        {{-- <li><a href="" >Suivi M&eacute;dical</a></li> --}}
 
-        <li><a href="{{ route('login') }}" >Creer Un Rdv</a></li>
+        <li><a href="{{ route('login') }}" class="btn btn red waves-effect darken-4">Specialiste</a></li>
 
       </ul>
 

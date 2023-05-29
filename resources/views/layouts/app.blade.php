@@ -67,7 +67,7 @@ main {
 
             </a>
             <a  href="#" class="white-text sidenav-trigger" data-target="mobile-nav">
-            <i class="material-icons black">menu</i>
+            <i class="material-icons text-black">menu</i>
             </a>
 
             <ul class="right hide-on-med-and-down">
@@ -79,14 +79,14 @@ main {
               @endif
 
 
-              <li><a href="{{route('suivi')}}" >Suivi M&eacute;dical </a></li>
+              {{-- <li><a href="{{route('suivi')}}" >Suivi M&eacute;dical </a></li> --}}
 
               @if (auth()->check())
 
-              <li><a href="{{ route('home') }}" >Rdv M&eacute;dical</a></li>
+              {{-- <li><a href="{{ route('home') }}" >Rdv M&eacute;dical</a></li>
               <li><a href="{{ route('dossier') }}" >Dosier M&eacute;dical</a></li>
-              <li><a href="{{ route('examen') }}" >Examens M&eacute;dicaux</a></li>
-              <li class="purple">
+              <li><a href="{{ route('examen') }}" >Examens M&eacute;dicaux</a></li> --}}
+              <li class="purple darken-4">
                 <a href="" class="white-text dropdown-trigger" data-target="dropdown1">
 
               {{ Auth()->user()->email }}
