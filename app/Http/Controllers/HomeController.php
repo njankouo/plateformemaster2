@@ -25,8 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $rdv=Rdv::all();
-        $users=User::all();
-        return view('home',compact('rdv','users'));
+
+        return view('home');
     }
 }

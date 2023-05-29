@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Notifications\UserNotification;
@@ -73,6 +74,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
 
         ]);
+        Patient::create([
+            'nom'=>$data['name'],
+            'email'=>$data['email']
+        ]);
+
         $user->notify(new UserNotification());
        // return back()->with('success');
     }
